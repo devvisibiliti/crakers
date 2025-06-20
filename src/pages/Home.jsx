@@ -110,7 +110,7 @@ const ProductBox = ({ image, title, button }) => {
                 borderRadius: "8px",
                 padding: "16px",
                 textAlign: "center",
-                width: "220px",
+                width: "400px",
                 boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
                 margin: "0 10px",
             }}
@@ -169,6 +169,7 @@ const Home = () => {
                         <ProductBox key={mainproduct.id} {...mainproduct} />
                     ))}
                 </div>
+                <h2 style={{ textAlign: "center", fontSize: 50, fontWeight: 700, marginTop: "40px" }}>Our Products</h2>
                 <ProductTable products={products} />
                 <WhyChooseUs />
             </div>

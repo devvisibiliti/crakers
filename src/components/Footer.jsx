@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -23,10 +24,13 @@ const Footer = () => {
                 <div style={{ flex: "1 1 150px" }}>
                     <h4 style={{ color: "#fff", marginBottom: 12 }}>Quick Links</h4>
                     <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                        <li><a href="/" style={{ color: "#ccc", textDecoration: "none" }}>Home</a></li>
-                        <li><a href="/about" style={{ color: "#ccc", textDecoration: "none" }}>About</a></li>
+                        {/* <li><a href="/" style={{ color: "#ccc", textDecoration: "none" }}>Home</a></li> */}
+                       <li><Link to="/" style={{ color: "#ccc", textDecoration: "none" }}>Home</Link></li> 
+                        <li><Link to="/product" style={{ color: "#ccc", textDecoration: "none" }}>Product</Link></li>
+                        <li><Link to="/contact" style={{ color: "#ccc", textDecoration: "none" }}>Contact</Link></li>
+                        {/* <li><a href="/product" style={{ color: "#ccc", textDecoration: "none" }}>About</a></li>
                         <li><a href="/services" style={{ color: "#ccc", textDecoration: "none" }}>Services</a></li>
-                        <li><a href="/contact" style={{ color: "#ccc", textDecoration: "none" }}>Contact</a></li>
+                        <li><a href="/contact" style={{ color: "#ccc", textDecoration: "none" }}>Contact</a></li> */}
                     </ul>
                 </div>
 

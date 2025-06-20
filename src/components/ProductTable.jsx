@@ -58,7 +58,8 @@ const ProductTable = ({ products = [] }) => {
 
 
      return (
-    <div>
+      <div>
+      
       <table style={styles.table}>
         <thead>
           <tr>
@@ -114,6 +115,7 @@ const ProductTable = ({ products = [] }) => {
         </button>
       </div>
     </div>
+    
   );
 };
 

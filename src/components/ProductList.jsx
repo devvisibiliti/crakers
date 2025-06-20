@@ -31,11 +31,13 @@ const ProductList = () => {
   dispatch(setProducts(products));
 }, [dispatch]);
   return (
+    <>
+      <h2 style={{ textAlign: "center", fontSize: 50, fontWeight: 700, marginTop: "40px" }}>Our Products</h2>
     <div>
-      <h2 style={{ textAlign: 'center' }}>Available Products</h2>
       <ProductTable products={products} />
       
     </div>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 
-
+import { Link } from 'react-router-dom';
 
 const Header = ()=>{
     return (
@@ -13,13 +13,13 @@ const Header = ()=>{
           <nav className="flex-1 flex justify-center">
             <ul className="flex space-x-6">
               <li>
-                <a href="/" className="hover:underline">Home</a>
+                <Link to="/" className="hover:underline">Home</Link>
               </li>
               <li>
-                <a href="/product" className="hover:underline">Product</a>
+                <Link to='/product' className="hover:underline">Product</Link>
               </li>
               <li>
-                <a href="/contact" className="hover:underline">Contact</a>
+                <Link to="/contact">Contact</Link>
               </li>
             </ul>
           </nav>
