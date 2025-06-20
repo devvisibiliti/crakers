@@ -28,7 +28,7 @@ const Cart = () => {
                 <td style={{textAlign:'center'}}>₹{item.offerPrice}</td>
                 <td style={{textAlign:'center'}}>₹{item.offerPrice * item.quantity}</td>
                 <td>
-                  <button onClick={() => dispatch(removeItem(item.id))} style={{backgroundColor:'#4CAF50', padding:5, borderRadius:2}}>Remove</button>
+                  <button onClick={() => dispatch(removeItem(item.id))} style={{backgroundColor:'#4CAF50', padding:5, borderRadius:2, margin:5}}>Remove</button>
                 </td>
               </tr>
             ))}
