@@ -65,38 +65,46 @@ export default function Reviews() {
 
   if (loading) return <p>Loading reviews...</p>;
   if (error) return <p>Error: {error}</p>;
-
   if (reviews.length === 0) return <p>No reviews found.</p>;
 
+  // Calculate the 3 reviews to show in carousel window
+  const visibleReviews = [];
+  for (let i = 0; i < 3; i++) {
+    visibleReviews.push(reviews[(currentIndex + i) % reviews.length]);
+  }
+
   return (
-    <div className="max-w-xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Google Reviews</h2>
+    <div className="max-w-5xl mx-auto px-4">
+      <h2 className="text-2xl font-bold mb-6 text-center">Google Reviews</h2>
 
       {/* Carousel for desktop */}
-      <div className="hidden md:flex relative items-center">
+      <div className="hidden md:flex relative items-center justify-center space-x-6">
         {/* Left Arrow */}
         <button
           onClick={goPrev}
-          className="absolute left-0 z-10 p-2 bg-gray-200 rounded-full hover:bg-gray-300"
-          aria-label="Previous Review"
+          className="absolute left-0 z-10 p-3 bg-gray-200 rounded-full hover:bg-gray-300"
+          aria-label="Previous Reviews"
         >
           &#8592;
         </button>
 
-        {/* Review card */}
-        <div className="w-full px-8">
-          <div className="p-6 border rounded shadow-md">
-            <p className="font-semibold">{reviews[currentIndex].author_name}</p>
-            <StarRating rating={reviews[currentIndex].rating} />
-            <p className="mt-2">{reviews[currentIndex].text}</p>
+        {/* Show 3 reviews side-by-side */}
+        {visibleReviews.map((review, index) => (
+          <div
+            key={index}
+            className="w-1/3 p-6 border rounded shadow-md bg-white"
+          >
+            <p className="font-semibold">{review.author_name}</p>
+            <StarRating rating={review.rating} />
+            <p className="mt-2">{review.text}</p>
           </div>
-        </div>
+        ))}
 
         {/* Right Arrow */}
         <button
           onClick={goNext}
-          className="absolute right-0 z-10 p-2 bg-gray-200 rounded-full hover:bg-gray-300"
-          aria-label="Next Review"
+          className="absolute right-0 z-10 p-3 bg-gray-200 rounded-full hover:bg-gray-300"
+          aria-label="Next Reviews"
         >
           &#8594;
         </button>
@@ -105,7 +113,7 @@ export default function Reviews() {
       {/* Vertical stacked reviews for mobile */}
       <div className="md:hidden space-y-4">
         {reviews.map((review, index) => (
-          <div key={index} className="p-4 border rounded shadow-md">
+          <div key={index} className="p-4 border rounded shadow-md bg-white">
             <p className="font-semibold">{review.author_name}</p>
             <StarRating rating={review.rating} />
             <p className="mt-2">{review.text}</p>
