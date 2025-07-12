@@ -111,20 +111,34 @@ export default function Reviews() {
         </button>
       </div>
 
-      {/* Mobile stacked reviews */}
-      <div className="md:hidden space-y-4">
-        {reviews.map((review, index) => (
-          <div
-            key={index}
-            className="p-4 border rounded shadow-md bg-white flex flex-col"
-          >
-            <p className="font-semibold">{review.author_name}</p>
-            <StarRating rating={review.rating} />
-            <div className="mt-2">
-              <p>{review.text}</p>
-            </div>
+      {/* Mobile carousel: show only one review at a time with arrows */}
+      <div className="md:hidden relative flex items-center justify-center">
+        {/* Left arrow */}
+        <button
+          onClick={goPrev}
+          className="absolute left-0 z-10 p-3 bg-gray-200 rounded-full hover:bg-gray-300"
+          aria-label="Previous Review"
+        >
+          &#8592;
+        </button>
+
+        {/* Single review card */}
+        <div className="p-4 border rounded shadow-md bg-white flex flex-col w-full mx-8">
+          <p className="font-semibold">{reviews[currentIndex].author_name}</p>
+          <StarRating rating={reviews[currentIndex].rating} />
+          <div className="mt-2">
+            <p>{reviews[currentIndex].text}</p>
           </div>
-        ))}
+        </div>
+
+        {/* Right arrow */}
+        <button
+          onClick={goNext}
+          className="absolute right-0 z-10 p-3 bg-gray-200 rounded-full hover:bg-gray-300"
+          aria-label="Next Review"
+        >
+          &#8594;
+        </button>
       </div>
     </div>
   );
