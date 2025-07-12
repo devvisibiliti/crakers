@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 function StarRating({ rating }) {
   const stars = [];
-
   for (let i = 1; i <= 5; i++) {
     stars.push(
       <svg
@@ -17,7 +16,6 @@ function StarRating({ rating }) {
       </svg>
     );
   }
-
   return <div>{stars}</div>;
 }
 
@@ -25,6 +23,9 @@ export default function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const intervalRef = useRef();
 
   useEffect(() => {
     fetch('/api/google-reviews')
@@ -42,34 +43,74 @@ export default function Reviews() {
       });
   }, []);
 
+  // Auto advance every 5 seconds
+  useEffect(() => {
+    if (reviews.length === 0) return;
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % reviews.length);
+    }, 5000);
+
+    return () => clearInterval(intervalRef.current);
+  }, [reviews]);
+
+  function goPrev() {
+    clearInterval(intervalRef.current);
+    setCurrentIndex((prev) => (prev === 0 ? reviews.length - 1 : prev - 1));
+  }
+
+  function goNext() {
+    clearInterval(intervalRef.current);
+    setCurrentIndex((prev) => (prev + 1) % reviews.length);
+  }
+
   if (loading) return <p>Loading reviews...</p>;
   if (error) return <p>Error: {error}</p>;
 
+  if (reviews.length === 0) return <p>No reviews found.</p>;
+
   return (
-    <div>
+    <div className="max-w-xl mx-auto">
       <h2 className="text-2xl font-bold mb-4">Google Reviews</h2>
 
-      <div
-        className="flex space-x-4 overflow-x-auto
-                   md:flex-row md:space-x-4
-                   flex-col md:overflow-x-visible"
-        style={{ scrollSnapType: 'x mandatory' }}
-      >
-        {reviews.length === 0 ? (
-          <p>No reviews found.</p>
-        ) : (
-          reviews.map((review, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 w-80 p-4 border rounded shadow-md
-                         scroll-snap-align-start mb-4 md:mb-0"
-            >
-              <p className="font-semibold">{review.author_name}</p>
-              <StarRating rating={review.rating} />
-              <p className="mt-2">{review.text}</p>
-            </div>
-          ))
-        )}
+      {/* Carousel for desktop */}
+      <div className="hidden md:flex relative items-center">
+        {/* Left Arrow */}
+        <button
+          onClick={goPrev}
+          className="absolute left-0 z-10 p-2 bg-gray-200 rounded-full hover:bg-gray-300"
+          aria-label="Previous Review"
+        >
+          &#8592;
+        </button>
+
+        {/* Review card */}
+        <div className="w-full px-8">
+          <div className="p-6 border rounded shadow-md">
+            <p className="font-semibold">{reviews[currentIndex].author_name}</p>
+            <StarRating rating={reviews[currentIndex].rating} />
+            <p className="mt-2">{reviews[currentIndex].text}</p>
+          </div>
+        </div>
+
+        {/* Right Arrow */}
+        <button
+          onClick={goNext}
+          className="absolute right-0 z-10 p-2 bg-gray-200 rounded-full hover:bg-gray-300"
+          aria-label="Next Review"
+        >
+          &#8594;
+        </button>
+      </div>
+
+      {/* Vertical stacked reviews for mobile */}
+      <div className="md:hidden space-y-4">
+        {reviews.map((review, index) => (
+          <div key={index} className="p-4 border rounded shadow-md">
+            <p className="font-semibold">{review.author_name}</p>
+            <StarRating rating={review.rating} />
+            <p className="mt-2">{review.text}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
