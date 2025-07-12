@@ -4,7 +4,7 @@ function Reviews() {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch('/api/google-reviews')
+    fetch('./api/google-reviews.js') // Adjust the path as necessary
       .then(res => res.json())
       .then(data => setReviews(data));
   }, []);
