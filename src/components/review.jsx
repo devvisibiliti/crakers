@@ -74,6 +74,49 @@ export default function Reviews() {
 
   return (
     <div className="max-w-5xl mx-auto px-4">
+      {/* Header section */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
+        <div>
+          <h3 className="text-xl font-bold">
+            {/* Replace with your business name */}
+            Your Business Name
+          </h3>
+          <div className="flex items-center mt-1 space-x-2">
+            {/* Overall rating */}
+            <span className="text-2xl font-semibold text-yellow-500">
+              {/* Replace with your overall rating */}
+              4.8
+            </span>
+            <StarRating rating={5} />
+            {/* Reviews count */}
+            <span className="text-gray-600 text-sm">
+              {/* Replace with your reviews count */}
+              (123 reviews)
+            </span>
+          </div>
+        </div>
+        <div className="flex items-center space-x-3">
+          {/* Powered by Google */}
+          <span className="flex items-center text-xs text-gray-500">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+              alt="Google"
+              className="w-5 h-5 mr-1"
+            />
+            Powered by Google
+          </span>
+          {/* Write a review button */}
+          <a
+            href="https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm font-medium"
+          >
+            Write a review
+          </a>
+        </div>
+      </div>
+
       <h2 className="text-2xl font-bold mb-6 text-center">Google Reviews</h2>
 
       {/* Desktop carousel */}
