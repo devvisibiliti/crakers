@@ -2,6 +2,7 @@ import React, { useState, useEffect, } from "react";
 import ProductTable from "../components/ProductTable";
 import ProductList from "../components/ProductList";
 import { useNavigate } from "react-router-dom";
+import Reviews from "../components/review";
 
 // import solar1 from "./assets/home/solar1.jpeg";
 // import slider2 from "./assets/home/solar-slider-2.jpeg";
@@ -172,6 +173,7 @@ const Home = () => {
                 <h2 style={{ textAlign: "center", fontSize: 50, fontWeight: 700, marginTop: "40px" }}>Our Products</h2>
                 <ProductTable products={products} />
                 <WhyChooseUs />
+                <Reviews />
             </div>
         </>
     );
