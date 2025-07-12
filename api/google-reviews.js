@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
   const PLACE_ID = 'ChIJm_1WbERnUjoRTJSVIABJSiY';
-  const API_KEY = process.env.GOOGLE_API_KEY;
+  const API_KEY = 'AIzaSyB3_seTGPaYPRjMd8cw5QfFE2HzngeqyMc';
   const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews&key=${API_KEY}`;
 
   try {
