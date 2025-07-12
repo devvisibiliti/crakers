@@ -126,20 +126,20 @@ const ProductBox = ({ image, title, button }) => {
 };
 
 const WhyChooseUs = () => (
-    <div style={{ display: "flex", alignItems: "center", margin: "40px 0", padding: "0 40px", backgroundColor: "#f9f9f9", borderRadius: "12px", boxShadow: "0 2px 12px rgba(0,0,0,0.1)" }}>
-        <div style={{ flex: "0 0 320px", marginRight: "100px", width:"50%" }}>
+    <div className="flex flex-col md:flex-row items-center my-10 md:my-16 px-4 md:px-10 bg-gray-50 rounded-xl shadow-lg">
+        <div className="w-full md:w-1/2 md:mr-12 mb-6 md:mb-0 flex-shrink-0">
             <img
                 src="/assets/home/whychoose.png"
                 alt="Why Choose Us"
-                style={{ width: "100%", height:'100%', borderRadius: "12px", boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}
+                className="w-full h-auto rounded-xl shadow-md"
             />
         </div>
-        <div style={{ flex: 1, paddingLeft: "50px" , width:"50%", fontWeight: 700 }}>
-            <h2 style={{ marginBottom: "16px", fontSize:50 }}>Why Choose Us?</h2>
-            <p style={{ marginBottom: "18px", color: "#555" }}>
+        <div className="w-full md:w-1/2 md:pl-8 font-bold">
+            <h2 className="mb-4 text-3xl md:text-5xl font-extrabold">Why Choose Us?</h2>
+            <p className="mb-4 text-gray-600 font-normal">
                 We provide the best quality crackers at unbeatable prices, ensuring your celebrations are safe and memorable.
             </p>
-            <ul style={{ listStyle: "disc inside", color: "#333", lineHeight: "1.8" }}>
+            <ul className="list-disc pl-5 text-gray-800 space-y-2 text-base md:text-lg font-medium">
                 <li>Premium quality and safety-tested products</li>
                 <li>Wide variety to suit every celebration</li>
                 <li>Fast delivery and excellent customer support</li>
