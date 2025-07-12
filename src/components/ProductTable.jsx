@@ -110,7 +110,10 @@ const ProductTable = ({ products = [] }) => {
       </table>
 
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <button onClick={handleAddAllToCart} style={styles.button}>
+        <button
+          onClick={handleAddAllToCart}
+          style={{ ...styles.button, backgroundColor: '#4CAF50', color: '#fff', marginBottom: '20px' }}
+        >
           Add to Cart
         </button>
       </div>
